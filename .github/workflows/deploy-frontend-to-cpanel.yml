@@ -28,7 +28,7 @@ jobs:
         run: npm run build:frontend
 
       - name: Deploy dist to cPanel via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+        uses: SamKirkland/FTP-Deploy-Action@v4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
