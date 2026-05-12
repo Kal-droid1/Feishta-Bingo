@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   const backendUrl = env.VITE_BACKEND_URL || 'http://localhost:3000';
 
   return {
+    base: mode === 'production' ? '/bingo/' : '/',
     plugins: [
       tailwindcss(),
       react(),
