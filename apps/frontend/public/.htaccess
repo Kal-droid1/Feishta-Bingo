@@ -1,0 +1,16 @@
+# SPA fallback for Vite-built app served from /bingo/
+# Prevent directory listing and disable MultiViews
+Options -Indexes -MultiViews
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /bingo/
+
+  # If the requested resource exists as a file or directory, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise rewrite to the SPA entrypoint
+  RewriteRule . /bingo/index.html [L]
+</IfModule>
