@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rolldown/binding-linux-x64-gnu": "^1.0.0-rc.17",
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
     "@telegram-apps/sdk": "^3.11.8",
+    "lightningcss-linux-x64-gnu": "^1.32.0",
     "lucide-react": "^1.14.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",

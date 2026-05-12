@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { Room, User } from '../types';
 
 interface Phase2CardSelectionProps {
@@ -47,7 +47,7 @@ export function Phase2CardSelection({ room, user, onJoinGame, onBackToLobby }: P
   const [prizePool, setPrizePool] = useState(0); 
   const [playersCount, setPlayersCount] = useState(0);
   const [seatsTaken, setSeatsTaken] = useState(0);
-  const [cycleNumber, setCycleNumber] = useState(-1);
+  const [, setCycleNumber] = useState(-1);
 
   const [previewCardId, setPreviewCardId] = useState<number | null>(null);
   const [isBuying, setIsBuying] = useState(false);
@@ -57,7 +57,7 @@ export function Phase2CardSelection({ room, user, onJoinGame, onBackToLobby }: P
   // Optimistic UI lock to prevent double clicks during API call
   const [pendingAction, setPendingAction] = useState<number | null>(null);
 
-  const hoverRef = useRef<NodeJS.Timeout | null>(null);
+  const hoverRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const myReservedRef = useRef<number[]>([]);
   
   // FIX 7: Track when user just clicked to prevent poll from overwriting optimistic update

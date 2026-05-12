@@ -29,8 +29,6 @@ interface Phase3LiveGameProps {
   onBackToLobby: () => void;
   voiceEnabled: boolean;
   onToggleVoice: () => void;
-  darkMode: boolean;
-  onToggleDark: () => void;
 }
 
 // ── 75-Ball Generator (Identical to Server logic) ────────────────
@@ -80,7 +78,7 @@ function getColumnLabel(num: number): string {
   return 'O';
 }
 
-function checkWin(card: BingoCard, dabbed: boolean[][], cardIndex: number): WinResult | null {
+function checkWin(dabbed: boolean[][], cardIndex: number): WinResult | null {
   // 5 horizontal rows
   for (let row = 0; row < 5; row++) {
     if (dabbed[row].every(Boolean)) return { type: 'horizontal', cells: [0, 1, 2, 3, 4].map((col) => [row, col]), cardIndex };
@@ -100,7 +98,7 @@ function checkWin(card: BingoCard, dabbed: boolean[][], cardIndex: number): WinR
 }
 
 // ── Component ────────────────────────────────────────────────────
-export function Phase3LiveGame({ room, user, selectedCardIds, onGameEnd, onBackToLobby, voiceEnabled, onToggleVoice, darkMode, onToggleDark }: Phase3LiveGameProps) {
+export function Phase3LiveGame({ room, user, selectedCardIds, onGameEnd, onBackToLobby, voiceEnabled, onToggleVoice }: Phase3LiveGameProps) {
   const [cards] = useState<BingoCard[]>(selectedCardIds.map(generateBingoCard));
   const myId = String(user.telegramId);
 
@@ -326,7 +324,7 @@ export function Phase3LiveGame({ room, user, selectedCardIds, onGameEnd, onBackT
     if (status !== 'game' || showCelebration || globalWinner) return;
 
     for (let ci = 0; ci < cards.length; ci++) {
-      const result = checkWin(cards[ci], dabbedState[ci], ci);
+      const result = checkWin(dabbedState[ci], ci);
       if (result) {
         if (autoDab) {
           triggerWin(result);
@@ -658,7 +656,7 @@ export function Phase3LiveGame({ room, user, selectedCardIds, onGameEnd, onBackT
           </div>
 
           {/* Add custom animations */}
-          <style jsx>{`
+          <style>{`
             @keyframes float {
               0%, 100% { transform: translateY(0px) rotate(0deg); }
               50% { transform: translateY(-20px) rotate(180deg); }

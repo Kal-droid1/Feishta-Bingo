@@ -370,8 +370,6 @@ function App() {
                 onBackToLobby={handleBackToLobby}
                 voiceEnabled={voiceEnabled}
                 onToggleVoice={() => setVoiceEnabled(v => !v)}
-                darkMode={theme !== 'light'}
-                onToggleDark={() => setTheme(theme === 'light' ? 'dark' : 'light')}
               />
             )}
 
